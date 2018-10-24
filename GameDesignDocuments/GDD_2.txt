@@ -64,7 +64,10 @@ weapons
         > ability access
         > upgradeable???
             = fang knife - short-range melee weapon
-            = bonespear - mid-long range melee weapon
+            = bonesaber - mid-long range melee weapon
     
     - ranged weapons
-        > 
+        > ability access
+        > upgradeable???
+            = bonebow - long-ranged weapon
+            = alphagon crossbow - mid-ranged weapon
