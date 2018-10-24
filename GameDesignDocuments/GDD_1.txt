@@ -1,0 +1,93 @@
+GDD_1.txt
+Team: Scaffold Team 1
+Date: Oct. 23, 2018
+
+Oh look, the first game design document for our game; didn't see that coming.
+
+
+---- Background:
+
+Corrupted, fanatical crusaders have gained control over a fictional kingdom, whose name I haven't even decided yet. You, an unholy and dangerous wraith, are summoned
+from a realm of eternal torment and agony by those seeking to overthrow the corrupted crusaders and restore order to the land.
+
+As this wraith, you have a form of free-will. You serve those that summon you, but these summoners are not evil people, rather those desperate and in need of a form of magical
+power to aid them in their quest to overthrow an inhumane and fanatical empire.
+
+
+---- Objective:
+
+The game is a 2D Top-Down Shooter whose core is wave-survival. Players will assume the role of a melee-only unit; they can only fight those
+within melee range and nothing else. Enemies, however, can assume melee and ranged roles, and having both intermixed during a wave can be
+difficult.
+
+That's why the player, as a core melee unit, has abilities that distinguish them as a special unit from the rest. These abilities range from
+self-healing to warping from one enemy to another, and these help the player not only fight off different enemy units, but give them a chance
+to reach higher waves. Having abilities also makes it so each wave isn't dragging along; players can deliberately use them early to finish
+off early waves fast, then move on.
+
+
+---- Mechanics:
+
+NOTE: Mechanics are listed as a general category, then sub-categories of those general mechanics. Every single item under a general category
+counts as a mechanic; this does NOT mean every sub-item is a mechanic I want to see in our game.
+
+Also, the mechanics listed below are borderline-basic; over time they could become complex as our game becomes more developed.
+
+> Health <
+    - permanent and regenerative
+    - health bar vs. 3-life vs. 1-life
+    - restoring health is possible
+    - overhealing is possible
+    - lives system
+
+> Armor <
+    - temporary "health"
+    - armor count vs. armor bar
+    - gaining armor as a permanent layer of "health" is possible
+    - takes damage first, then health
+
+> Shield <
+    - permanent and regenerative
+    - way smaller than health
+    - takes damage first, then armor, then health
+
+> Damage <
+    - player damage
+    - enemy damage
+    - damage immunity
+        * elemental damage
+        * scripted, task-oriented damage
+        * reflected damage
+
+> Items <
+    - restorative items
+    - temporary buffs
+    - special weapon drops
+    - armor items
+
+
+---- User Behaviors
+
+> Movement <
+    - W, A, S, D to Move
+    - SPACEBAR to Jump
+
+> Attack <
+    - Left-mouse button to Attack
+    - Hold left-mouse button, then release to Charge Attack
+    - Right-mouse button to Block
+
+> Abilities <
+    - Fits into the following hotkeys:
+        * 1-9
+        * z key
+        * x key
+        * r key
+        * e key
+        * g key
+
+    
+    
+
+
+    
