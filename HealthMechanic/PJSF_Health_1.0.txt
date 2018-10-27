@@ -1,0 +1,62 @@
+==== PJSF_Health_1.0 ====
+
+Author: Michael "Snowy" Wong
+
+    ==== maximum health ====
+        
+        -- player maximum health --
+            
+            >>> player maximum health is 100 points
+                Having 100 maximum for health is usually a norm. Anything higher than this can make playing our game too easy; we want it be challenging.
+                The player will have access to items, abilites, and other mechanics that benefit their survival.
+
+            >>> static; does not change by any means
+                The player's health can't be increased by any means. Items and abilities can't permanently increase the player's maximum health, but
+                it can provide overheal should the player's health be at 100; explained below.
+
+            >>> restores to max at the end of every wave <
+                Once a wave ends, the player's health automatically restores to its maximum. This allows the player to be rewarded for surviving
+                with the gift of health, and encourages them to continue on to the next round.
+        
+        -- enemy maximum health --
+            
+            >>> enemy maximum health is at least x points; varies by enemy type <
+                The maximum health for the most basic unit type should be x. However, at the end of the day, the maximum health for enemies 
+                varies by enemy type.
+
+            >>> dynamic; maximum health increases by x points every wave <
+                Every wave that the player survives, all enemy types become more durable by having their maximum health increased by x points
+                per wave survived.
+            
+            >>> resets to max for every new enemy spawned
+                Every freshly-spawned enemy unit should have their health at its maximum. At no point should their health be any lower than its
+                maximum.
+
+
+    ==== auto-recovery ====
+
+        -- player auto-recovery --
+
+            >>> player recovers x health/ second after 3 seconds of not taking damage <
+                Should the player not take damage for 3 seconds, their health will slowly regenerate x health/ second, for a maximum
+                of x health/ 5 seconds. Having auto-recovery is crucial to our game because it allows our player to strategize when
+                to attack and run on waves with overwhelming, potentially high-damaging enemies.
+
+            >>> auto-recovery interrupted upon taking damage
+                Upon taking damage, player auto-recovery resets back to its 3-second timer. This applies even if auto-recovery is 1
+                second away from activating; no matter where the timer for auto-recovery is at, any damage taken during the cooldown
+                will reset it.
+
+            >>> can't activate if player's health is above 3/4 its maximum
+                Should the player's health be above 3/4 its maximum at any given time, auto-recovery will never activate. This happens
+                even if the player's health is at 76/100; auto-recovery will remain locked until the player's current health drops below
+                75.
+
+            >>> recovered health can't exceed 3/4 the maximum health
+                Auto-recovery can't restore health above 3/4 the maximum health. It's valuable enough that health can be recovered, and
+                setting a limitation to health recovery adds extra challenge for the player to avoid taking damage at all costs.
+
+
+
+
+        
