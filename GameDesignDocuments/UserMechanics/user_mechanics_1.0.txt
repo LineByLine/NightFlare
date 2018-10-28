@@ -1,0 +1,182 @@
+==== user_mechanics_1.0 ====
+
+I decided to split our game's mechanics into a few categories. Here are a few to start with:
+- Survival
+- Combat
+- Utility
+- Resource
+- Trade
+- User Behavior
+
+
+=========================================================================================================
+Legend:
+
+// [Category] \\ 
+    
+    specific category for a particular group of mechanics
+
+-- [mechanic] -- 
+    
+    the actual mechanic; usually the mechanics assigned for programmers to create
+
+++ [active character] 
+    
+    what the mechanic will effect in a certain, particular way
+
+- [details]
+    
+    details for how the mechanic works with the active character (if any); usually what
+    the programmer focuses on when developing the mechanic; expect specifics below each
+    detail section
+
+=========================================================================================================
+
+
+// Survival \\
+
+
+-- maximum health
+    
+    ++ player
+
+        - maximum health set to 100 points
+            
+            at any given point, the player's health will be set to 100 at the start of a round
+
+        - using a points-based system
+            
+            health is measured by points, or health points; this will affect how health is deducted
+
+        - health restores back to 100% its maximum at the end of a wave
+            
+            once a wave ends, the player's health returns to 100% its maximum capacity, no matter what
+        
+        - Game Over at 0 health
+            
+            at 0 health, it's Game Over for the player; this is a separate mechanic that will be explained later
+    
+    ++ enemy
+
+        - maximum health is at least set to x points for the most basic enemy unit
+            
+            maximum health varies by enemy type, but the minimum health for enemies should be x points
+        
+        - using a points-based system
+            
+            explained above for player; same thing for player
+
+
+-- natural recovery
+
+    ++ player
+
+        - player recovers x health/ second upon taking damage after a 3-second delay
+            
+            after taking damage, every 3 seconds, the player gradually recovers x health/ second; critical 
+            echanic that helps the player survive
+        
+        - recovery can't exceed 3/4 the maximum health
+            
+            natural recovery cannot restore the player's health above 3/4 its maximum capacity; e.g.: at 100 health
+            maximum, only up to 75 can be restored through natural recovery
+        
+        - interruptable by damage
+           
+            at any point during recovery delay does the player take damage, the delay timer resets to
+            3 seconds
+        
+        - only activates when player's health falls below 3/4 its maximum
+
+            if the player's health falls below 3/4 its maximum, natural recovery can activate
+    
+
+// Combat \\
+
+=========================================================================================================
+Combat Legend:
+
+type - what kind of attack it is; choice among melee, ranged, and magic (yes, it's like RuneScape)
+weapon - what weapon makes this attack available; affects the kind of damage inflicted
+attack damage - how much damage this attack inflicts
+attack speed - how fast this attack can be used
+range - the range at which this attack succeeds and hits the target
+charge - time required for attack to be charged before activation
+
+=========================================================================================================
+
+
+-- melee offense
+
+    ++ player
+
+        - punch
+
+            type: melee
+            weapon: claws
+            attack damage: x points
+            attack speed: x points/ second
+            range: r units
+            charge: none
+
+        - slash
+            
+            type: melee
+            weapon: fang knife
+            attack damage: x points
+            attack speed: x points/ second
+            range: r units
+            charge: none
+        
+        - sever
+
+            type: melee
+            weapon: fang knife
+            attack damage: x points
+            attack speed: x points/ second
+            range: r units
+            charge: 2 seconds
+            
+    
+    ++ enemy
+
+        - bite
+
+            type: melee
+            attack damage: x points
+            attack speed: x points/ second
+            range: r units
+            charge: none
+
+
+// User Behavior \\
+
+    ++ player
+
+        - [W, A, S, D]
+
+            move
+
+        - [Left-Mouse Button]
+
+            attack
+        
+        - [Left-Mouse Button (Hold)]
+
+            charge attack
+        
+        - [Right-Mouse Button (Hold)]
+
+            block
+        
+        - [P or Esc]
+
+            pause game
+        
+        - [Spacebar]
+
+            interact
+        
+        - [E]
+
+            pick up
