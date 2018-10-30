@@ -1,0 +1,51 @@
+==== enemy_types_1.0 ====
+
+Game: Project: ShadowFlame
+Team: Scaffold Team 1
+Author: Michael "Snowy" David Wong
+
+=========================================================================================================
+Enemy Types
+
+- Legendary
+    Applies to all enemy types; doesn't have its own enemy category; legendary enemy units have 
+    immensely-boosted stats
+
+- Class I
+    Basic enemy unit with simple functionality; no abilities; enhanceable
+
+- Class II
+    Moderately stronger enemy unit with slightly more complex functionality;
+    may have abilities; enhanceable
+
+=========================================================================================================
+=========================================================================================================
+Enemy Characteristics
+
+- health
+    how durable the enemy is; how many hits the enemy can take; measured by points
+
+- attacks
+    the types of attacks the enemy uses; refer to mechanic design documents
+
+- size
+    how large the enemy is; affects collision and space on the map
+
+- movement
+    how fast the enemy can move; likely to be measured by points
+
+- legendary chance
+    percentage chance for an enemy spawned to be Legendary
+
+=========================================================================================================
+
+
+// Class I \\
+
+-- grunt
+
+    health: 2
+    attacks: bite
+    size: small
+    movement: medium
+    legendary chance: 10%

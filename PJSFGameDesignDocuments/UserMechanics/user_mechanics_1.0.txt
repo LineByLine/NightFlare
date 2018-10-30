@@ -1,0 +1,217 @@
+==== user_mechanics_1.0 ====
+
+Game: Project: ShadowFlame
+Team: Scaffold Team 1
+Author: Michael "Snowy" David Wong
+
+=========================================================================================================
+Mechanic Categories:
+
+- Survival
+    Focus on health, recovery, regeneration, durability, resistances, immunities
+
+- Combat
+    Focus on weapons, attacks, defenses, special attacks, abilities, perks, enhancements, buffs, 
+    debuffs, etc.
+
+- Utility
+    Focus on consumables, items, tools, hunter-related stuff
+
+- Resource
+    Focus on crafting, technical and material items, upgrading
+
+- Trade
+    Focus on currency, stores, purchasables, pricing, buying, selling
+
+- User Behavior
+    Focus on user-commands
+
+- Enemy AI
+    Focus on enemy movements, attacks, statuses, interactions, etc.
+
+=========================================================================================================
+=========================================================================================================
+Legend:
+
+// [Category] \\ 
+    specific category for a particular group of mechanics
+
+-- [mechanic] -- 
+    the actual mechanic; usually the mechanics assigned for programmers to create
+
+++ [active character] 
+    who the mechanics affect
+
+- [details]
+    details for how the mechanic works with the active character (if any); usually what
+    the programmer focuses on when developing the mechanic; expect specifics below each
+    detail section
+
+=========================================================================================================
+
+
+// Survival \\
+
+-- maximum health
+    
+    ++ player
+
+        - maximum health set to 100 points
+            the player's health will be set to 100 points
+
+        - using a points-based system
+            health is measured by points, or health points; this will affect how health is deducted
+    
+    ++ enemy
+
+        - maximum health is at least set to x points for the most basic enemy unit
+            maximum health varies by enemy type, but the minimum health for enemies should be x points
+        
+        - using a points-based system
+            explained above for player; same thing for player
+
+-- natural recovery
+
+    ++ player
+
+        - player recovers x health/ second after a 3-second delay followig damage taken
+            after taking damage, every 3 seconds, the player gradually recovers x health/ second; critical 
+            echanic that helps the player survive
+        
+        - recovery can't exceed 3/4 the maximum health
+            can't restore the player's health above 3/4 its maximum capacity; e.g.: at 100 health
+            maximum, only up to 75 can be restored through natural recovery
+        
+        - can be interrupted by damage
+           at any point during recovery delay does the player take damage, the delay timer resets to
+            3 seconds
+        
+        - only activates when player's health falls below 3/4 its maximum
+            if the player's health falls below 3/4 its maximum, natural recovery can activate
+    
+
+// Combat \\
+
+=========================================================================================================
+Combat Legend:
+
+++ all
+
+    - type
+        what kind of attack it is; choice among melee, ranged, and magic (yes, it's like RuneScape)
+
+    - form
+        determines whether the attack is used for offense or defense
+
+    - attack damage
+        how much damage this attack inflicts
+
+    - attack speed
+        how fast this attack can be used
+
+    - range
+        the range at which this attack succeeds and hits the target
+
+    - charge
+        time required for attack to be charged before activation
+    
+    - cost
+        what it costs for this ability to be used (will be improved later)
+
+=========================================================================================================
+
+-- melee
+
+    ++ player
+
+        - normal attack
+            Use currently-equipped weapon to deal x damage against target.
+
+            type: melee
+            form: offense
+            attack damage: x points
+            attack speed: x points/ second
+            range: r units
+            cooldown: none
+            cost: none
+        
+        - block
+            Stand your ground and defend yourself from attacks, reducing incoming
+            damage by %.
+
+            type: melee
+            form: defense
+            attack damage: none
+            attack speed: none
+            range: self
+            cooldown: none
+            cost: none
+        
+    ++ enemy
+
+        - bite
+            Bite at the target, dealing x damage.
+
+            type: melee
+            form: offense
+            attack damage: x points
+            attack speed: x points/ second
+            range: r units
+            cooldown: none
+            cost: none
+
+
+// User Behavior \\
+
+    ++ player
+
+        - [W, A, S, D]
+            move
+
+        - [Left-Mouse Button]
+            attack
+        
+        - [Left-Mouse Button (Hold)]
+            charge attack
+        
+        - [Right-Mouse Button (Hold)]
+            block
+        
+        - [P or Esc]
+            pause game
+        
+        - [Spacebar]
+            interact
+        
+        - [E]
+            pick up
+
+
+// Enemy AI \\
+
+    ++ enemy
+
+        - movement: walking
+            Enemy unit "walks" (moves slowly) at a speed of s; varies by enemy type
+        
+        - movement: running
+            Enemy unit "runs" (moves fast) at a speed of s; varies by enemy type
+        
+        - attack: melee attack
+            For melee enemy units, initiate a melee attack when the player is within
+            range r and inflict x damage upon a successful hit; damage and range vary
+            by enemy type
+        
+        - innate: track
+            No matter where the player is, the enemy will always know the player's location;
+            obstacles (iater mechanic) don't prevent enemies from attacking or locking on to 
+            player's location
+        
+        - interaction: bypass
+            Some enemies can get through obstacles by hurdling through them; generally, they're
+            able to bypass them in some way that doesn't destroy them
+
+        - status: death
+            At 0 health, enemies will end their current actions and perish in their current location
+            (dying mechanic)
+
