@@ -74,7 +74,7 @@ Legend:
 
     ++ player
 
-        - player recovers x health/ second after a 3-second delay followig damage taken
+        - player recovers x health/ second after a 3-second delay following damage taken
             after taking damage, every 3 seconds, the player gradually recovers x health/ second; critical 
             echanic that helps the player survive
         
