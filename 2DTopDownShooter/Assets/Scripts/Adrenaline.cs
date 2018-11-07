@@ -48,6 +48,7 @@ public class Adrenaline : MonoBehaviour {
 
     public void AdrenalineRush()
     {
+        //
         if (sp <= 0f)
         {
             canRun = false;
@@ -56,15 +57,18 @@ public class Adrenaline : MonoBehaviour {
         {
             canRun = true;
         }
+        //player runs when pressing the run button and can run (has stamina points). Resets the delay timer when the player runs
         if (Input.GetButton("Run") && canRun)
         {
             Run();
             delayTimer = originDelTime;
         }
+        //reset the delay timer when the bar is full
         if (sp >= originSP)
         {
             delayTimer = originDelTime;
         }
+        //if the player cannot run, then the bar regenerates after the delay time runs out. movement speed is set to its original speed.
         if (!Input.GetButton("Run") || !canRun)
         {
             if (sp < originSP)
@@ -78,6 +82,7 @@ public class Adrenaline : MonoBehaviour {
             moveSpeed = originMoveSpeed;
         }
     }
+    //increases movement speed and depletes the bar within 3 seconds
     public void Run()
     {
         moveSpeed = newMoveSpeed;
@@ -86,6 +91,7 @@ public class Adrenaline : MonoBehaviour {
         spText.text = newSP + " / " + originSP;
         spBar.fillAmount = (newSP / originSP);
     }
+    //regenerates the bar within 3 seconds
     public void AdrenalineRegen()
     {
         sp += (originSP / 3) * Time.deltaTime;
