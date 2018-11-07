@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             if(Vector2.Distance(transform.position, target.position) <= attackRange)
             {
-                Debug.Log("attack");
+                //Debug.Log("attack");
             }
         }
     }
