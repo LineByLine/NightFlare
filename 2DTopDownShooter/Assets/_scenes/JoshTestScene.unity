@@ -1114,8 +1114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originMoveSpeed: 0
   canRun: 1
-  newMoveSpeed: 50
-  sp: 10
+  newMoveSpeed: 13
+  sp: 100
   moveSpeed: 10
   playerY: 0
   playerX: 0

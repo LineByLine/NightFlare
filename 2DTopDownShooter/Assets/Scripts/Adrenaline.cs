@@ -9,6 +9,7 @@ public class Adrenaline : MonoBehaviour {
     public float newMoveSpeed = 20f;
     public float sp;
     private float originSP;
+    private float newSP;
     private float originDelTime;
     private float delayTimer = 3f;
     public float moveSpeed = 10f;
@@ -40,9 +41,11 @@ public class Adrenaline : MonoBehaviour {
             transform.Translate(new Vector3(playerX, 0.0f, 0.0f));
         }
         AdrenalineRush();
-        float newSP = Mathf.Round(sp);
-        spBar.fillAmount = newSP / originSP;
+        newSP = Mathf.Round(sp);
+        spBar.fillAmount = (newSP / originSP);
     }
+
+
     public void AdrenalineRush()
     {
         if (sp <= 0f)
@@ -78,14 +81,15 @@ public class Adrenaline : MonoBehaviour {
     public void Run()
     {
         moveSpeed = newMoveSpeed;
-        sp -= 5 *Time.deltaTime;
-        float newSP = Mathf.Round(sp);
+        sp -= (originSP/3) * Time.deltaTime;
+        newSP = Mathf.Round(sp);
         spText.text = newSP + " / " + originSP;
+        spBar.fillAmount = (newSP / originSP);
     }
     public void AdrenalineRegen()
     {
-        sp += 5 * Time.deltaTime;
-        float newSP = Mathf.Round(sp);
+        sp += (originSP / 3) * Time.deltaTime;
+        newSP = Mathf.Round(sp);
         spText.text = newSP + " / " + originSP;
     }
 }
