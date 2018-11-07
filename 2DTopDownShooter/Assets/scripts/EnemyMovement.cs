@@ -18,7 +18,6 @@ public class EnemyMovement : MonoBehaviour {
 
     //Physics stuff relevant to movement
     private Rigidbody2D rb;
-    private Collider2D thisCollider;
 
     [Header("Attack")]
     private float attackProgress = 0;
@@ -32,7 +31,6 @@ public class EnemyMovement : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentsInChildren<SpriteRenderer>()[0];
-        thisCollider = GetComponent<Collider2D>();
 
         waitTime = startWaitTime;
 		//Looks for the first GameObject tagged as "Player" and sets that GO's transform as the player attribute.

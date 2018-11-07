@@ -31,10 +31,10 @@ public class PlayerHealth : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("AAAAA");
+        Debug.Log("AAAAA");
         if (other.gameObject.CompareTag("Enemy"))
         {
-            //Debug.Log("why");
+            Debug.Log("why");
             TakeDamage(5);
         }
     }

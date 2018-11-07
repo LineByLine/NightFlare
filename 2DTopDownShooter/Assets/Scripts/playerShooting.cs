@@ -14,6 +14,7 @@ public class playerShooting : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
         useClip = firingPoint.GetComponent<weaponInfo>();
 	}
 	
