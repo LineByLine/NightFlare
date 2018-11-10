@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour {
-
-    public Transform[] patrolAreas; //positions to move from
-    private Transform playerTransform;
+    private GameObject player;
 	private Transform target;
-
     public float speed;
     public float waitTime;
     public float startWaitTime;
-
     //States representing what type of movement Enemy should be executing right now
     public enum State {chase, attack, die};
     public State currentAction = State.chase;
-
     //Physics stuff relevant to movement
     private Rigidbody2D rb;
 
@@ -34,10 +29,9 @@ public class EnemyMovement : MonoBehaviour {
 
         waitTime = startWaitTime;
 		//Looks for the first GameObject tagged as "Player" and sets that GO's transform as the player attribute.
-		//SO DON'T HAVE ANYTHING OTHER THAN THE PLAYER TAGGED AS "Player"
-		playerTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+		player = GameObject.FindGameObjectsWithTag("Player")[0];
 		//At start, assume nothing is obstructing enemy from player so set player's transform as target
-		target = playerTransform;
+		target = player.transform;
     }
 
     void Update()
@@ -71,7 +65,7 @@ public class EnemyMovement : MonoBehaviour {
         rb.MovePosition(Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime));
 
         //Start attacking if player is close enough
-        if(Vector2.Distance(transform.position, playerTransform.position) <= attackRange)
+        if(Vector2.Distance(transform.position, player.transform.position) <= attackRange)
         {
             currentAction = State.attack;
             sr.sprite = attackSprite;
@@ -111,10 +105,5 @@ public class EnemyMovement : MonoBehaviour {
             sr.sprite = defaultSprite;
             currentAction = State.chase;
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        Debug.Log(col.name);
     }
 }

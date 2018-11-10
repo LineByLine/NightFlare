@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class playerShootingProjectile : MonoBehaviour {
 	public GameObject bulletObject;
-	public float fireCooldown;
-	public float reloadTime;
 	[Header("Shooting Number Variables")]
 	public Transform firingPoint; //Where the bullet will travel/check from (realistic gun)
-	private weaponInfo useClip; //the weapon info script to access variables
+	private weaponInfoSegC useClip; //the weapon info script to access variables
+	public float fireCooldown;
 	private float currentFireCooldown;
-	private float currentReloadProgress;
 	// Use this for initialization
 	void Start () {
 		currentFireCooldown = fireCooldown;
-		currentReloadProgress = 0;
-        useClip = firingPoint.GetComponent<weaponInfo>();
+        useClip = firingPoint.GetComponent<weaponInfoSegC>();
 	}
 	
 	// Update is called once per frame
@@ -24,37 +21,25 @@ public class playerShootingProjectile : MonoBehaviour {
 		{
 			fire();
 		}
-		else if(Input.GetButtonUp("Fire1"))//If we want to let the player mash the Fire button to fire faster
-		{
-			useClip.reload();
-			currentFireCooldown = fireCooldown;
-		}
 	}
 
 	void fire()
 	{
 		//if your current ammo is empty, we try to reload
-		if (useClip.currentClip == 0 && currentReloadProgress >= reloadTime)
+		if (useClip.currentClip == 0)
 		{
-			currentReloadProgress = 0;
 			useClip.reload();
-		}
-		else if(useClip.currentClip == 0)
-		{
-			currentReloadProgress += Time.deltaTime;
 		}
 		else if (currentFireCooldown >= fireCooldown)//you can fire if u have ammo in your clip and fireCooldown has worn off
 		{
 			//Spawn bullet
 			GameObject.Instantiate(bulletObject, gameObject.transform.position,  gameObject.transform.rotation);
-			
 			//fires one bullet, subtracting from the current ammo 
 			useClip.currentClip--;
-			
 			//Start FireCooldown
 			currentFireCooldown = 0;
 		}
-		else//need to wait for cooldown
+		else//need to wait for cooldown before firing
 		{
 			currentFireCooldown += Time.deltaTime;
 		}

@@ -13,41 +13,36 @@ public class BulletBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		sr = gameObject.GetComponent<SpriteRenderer>();
+		sr = gameObject.GetComponent<SpriteRenderer>();//In case we want this to change when it hits
 		rb = gameObject.GetComponent<Rigidbody2D>();
-		gameObject.transform.rotation = GameObject.FindGameObjectsWithTag("Player")[0].transform.rotation;
 		distTravelled = 0;
-
+		
+		//Ignore the collisions with the PlayerObject
+		Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Collider2D>());
+		
+		//Set rotation to match PlayerBall's.
+		gameObject.transform.rotation = GameObject.FindGameObjectsWithTag("PlayerBall")[0].transform.rotation;
+		rb.velocity = transform.right * speed * Time.deltaTime; //I don't know why we need to use transform.right
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//WHY DOES THIS WORK
-		//I couldn't figure out how to add the correct velocity, so I added the current position to a vector
-		//Why does this vector make it go in the direction I want?
-		//rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position + new Vector3(speed * Time.deltaTime, 0.0f, 0.0f), speed * Time.deltaTime));
-		gameObject.transform.Translate(new Vector2(speed * Time.deltaTime, 0.0f));
+		//Track how long this bullet has travelled. Delete it if this object has exceeded its maxDistance
 		distTravelled += speed * Time.deltaTime;
 		if(distTravelled >= maxDistance)
 		{
 			Destroy(gameObject);
 		}
-		
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		string tag = collision.gameObject.tag;
-		if (tag != "Player")
+		if (collision.gameObject.tag == "Enemy") //Damage any enemy this touches
 		{
-			Debug.Log(tag);
-			if (tag == "Enemy")
-			{
-				damaging = collision.gameObject.GetComponent<enemyBehavior>();
-				damaging.currentHealth--;
-			}
-			//Kill this object if it hits anything that isn't a Player
-			Destroy(gameObject);
+			damaging = collision.gameObject.GetComponent<enemyBehavior>();
+			damaging.currentHealth--;
 		}
+		//Destroy this object if it hits anything
+		Destroy(gameObject);
 	}
 }

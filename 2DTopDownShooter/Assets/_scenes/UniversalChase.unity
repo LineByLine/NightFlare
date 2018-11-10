@@ -280,58 +280,6 @@ Transform:
   m_Father: {fileID: 1833249342}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &259449475
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 4.557
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -4.021
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982870217543542, guid: 8469378b698021d468c913436b5090f2, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 58987188250671032, guid: 8469378b698021d468c913436b5090f2,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.30000043
-      objectReference: {fileID: 0}
-    - target: {fileID: 58987188250671032, guid: 8469378b698021d468c913436b5090f2,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: -0.08787131
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8469378b698021d468c913436b5090f2, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &269109605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,14 +1093,19 @@ Prefab:
     - target: {fileID: 114789119529417066, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1,
         type: 2}
       propertyPath: fireCooldown
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114789119529417066, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1,
         type: 2}
       propertyPath: reloadTime
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1850657973229254, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1, type: 2}
+      propertyPath: m_TagString
+      value: PlayerBall
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1199162582
@@ -1269,7 +1222,7 @@ GameObject:
   - component: {fileID: 1237511946}
   m_Layer: 0
   m_Name: PlayerBall
-  m_TagString: Player
+  m_TagString: PlayerBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1676,20 +1629,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletObject: {fileID: 1845208970114932, guid: 8469378b698021d468c913436b5090f2,
     type: 2}
-  fireCooldown: 0.3
-  reloadTime: 3
+  fireCooldown: 0.2
   firingPoint: {fileID: 1833249342}
 --- !u!114 &1833249347
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114314395316839078, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 924846797}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1833249340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd77461b2b30bb46b031b2797940ea1, type: 3}
+  m_Script: {fileID: 11500000, guid: e9ba44ab04c515e4db453f44ee70898d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAmmo: 0
   currentClip: 0
+  reloadTime: 1.5
