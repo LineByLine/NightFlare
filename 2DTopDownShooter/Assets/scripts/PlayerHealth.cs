@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour {
     public float maxHp;
     public Image healthBar;
     public Text healthText;
+    public GameObject GameOverContainer;
 
     float timestamp = 0.0f; //start for a timer for how long it has been since Player has been damaged
 
@@ -67,6 +68,8 @@ public class PlayerHealth : MonoBehaviour {
         playerMovement.enabled = false;
         playerRotation.enabled = false;
         //INSERT ATTACK/SHOOTING TO BE DISABLED
+
+        GameOverContainer.SetActive(true);
     }
 
     IEnumerator addHealth() //Player recovers health up to 3/4 of maximum HP
