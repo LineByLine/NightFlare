@@ -1,2 +1,2 @@
-# 2DTopDownShooter
-2D Top down shooter game made by VGDC
+# NightFlare
+_Repository for Scaffold Team 1's game project_ Night Flare.
