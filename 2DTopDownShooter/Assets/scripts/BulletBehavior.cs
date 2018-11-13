@@ -40,7 +40,7 @@ public class BulletBehavior : MonoBehaviour {
 	{
 		if (collision.gameObject.tag == "Enemy") //Damage any enemy this touches
 		{
-			rb.bodyType = RigidbodyType2D.Static;
+			rb.simulated = false;
 			sr.sprite = impactSprite;
 			damaging = collision.gameObject.GetComponent<enemyBehavior>();
 			damaging.currentHealth--;

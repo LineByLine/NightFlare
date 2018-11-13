@@ -1155,6 +1155,9 @@ GameObject:
   - component: {fileID: 1237511947}
   - component: {fileID: 1237511948}
   - component: {fileID: 1237511950}
+  - component: {fileID: 1237511951}
+  - component: {fileID: 1237511953}
+  - component: {fileID: 1237511952}
   m_Layer: 0
   m_Name: PlayerBall
   m_TagString: PlayerBall
@@ -1183,11 +1186,11 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1237511945}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1272,6 +1275,49 @@ MonoBehaviour:
   playerX: 0
   playerY: 0
   moveSpeed: 15
+--- !u!114 &1237511951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237511945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec9f1bdf358d614d9a0c7e1d169790e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 50
+  maxHp: 50
+  healthBar: {fileID: 78235911}
+  healthText: {fileID: 269109607}
+--- !u!114 &1237511952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237511945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb87a2827944594c800015d33fa7d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletObject: {fileID: 1845208970114932, guid: 8469378b698021d468c913436b5090f2,
+    type: 2}
+  firingPoint: {fileID: 112466243}
+  fireCooldown: 0.2
+--- !u!114 &1237511953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237511945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ba44ab04c515e4db453f44ee70898d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentClip: 0
+  reloadTime: 1.5
 --- !u!1 &1384241314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,6 +1536,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114173395491548110, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb,
+        type: 2}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb, type: 2}
   m_IsPrefabAsset: 0
@@ -1502,9 +1553,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1833249342}
-  - component: {fileID: 1833249341}
-  - component: {fileID: 1833249346}
-  - component: {fileID: 1833249347}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: PlayerManager
@@ -1512,22 +1560,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1833249341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114386450752625638, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1833249340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec9f1bdf358d614d9a0c7e1d169790e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 5
-  maxHp: 100
-  healthBar: {fileID: 1384241316}
-  healthText: {fileID: 269109607}
 --- !u!4 &1833249342
 Transform:
   m_ObjectHideFlags: 0
@@ -1544,32 +1576,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1833249346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114789119529417066, guid: 11e2ba0a11d7a6a45a24d77ff0b2ebf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1833249340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb87a2827944594c800015d33fa7d7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletObject: {fileID: 1845208970114932, guid: 8469378b698021d468c913436b5090f2,
-    type: 2}
-  firingPoint: {fileID: 1833249342}
-  fireCooldown: 0.2
---- !u!114 &1833249347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1833249340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ba44ab04c515e4db453f44ee70898d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentClip: 0
-  reloadTime: 1.5
