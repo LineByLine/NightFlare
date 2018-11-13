@@ -17,6 +17,7 @@ public class playerShootingProjectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		currentFireCooldown += Time.deltaTime;
 		if (Input.GetButton("Fire1"))
 		{
 			fire();
@@ -38,10 +39,6 @@ public class playerShootingProjectile : MonoBehaviour {
 			useClip.currentClip--;
 			//Start FireCooldown
 			currentFireCooldown = 0;
-		}
-		else//need to wait for cooldown before firing
-		{
-			currentFireCooldown += Time.deltaTime;
 		}
 	}
 }

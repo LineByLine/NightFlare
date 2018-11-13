@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour {
 	private SpriteRenderer sr;
+	public Sprite impactSprite;
 	private Rigidbody2D rb;
 	public float speed;
 	public float maxDistance;
@@ -18,7 +19,7 @@ public class BulletBehavior : MonoBehaviour {
 		distTravelled = 0;
 		
 		//Ignore the collisions with the PlayerObject
-		Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Collider2D>());
+		Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectsWithTag("PlayerBall")[0].GetComponent<Collider2D>());
 		
 		//Set rotation to match PlayerBall's.
 		gameObject.transform.rotation = GameObject.FindGameObjectsWithTag("PlayerBall")[0].transform.rotation;
@@ -39,10 +40,16 @@ public class BulletBehavior : MonoBehaviour {
 	{
 		if (collision.gameObject.tag == "Enemy") //Damage any enemy this touches
 		{
+			rb.bodyType = RigidbodyType2D.Static;
+			sr.sprite = impactSprite;
 			damaging = collision.gameObject.GetComponent<enemyBehavior>();
 			damaging.currentHealth--;
+			Destroy(gameObject, 0.5f);
 		}
-		//Destroy this object if it hits anything
-		Destroy(gameObject);
+		else
+		{
+			Destroy(gameObject);
+		}
+		
 	}
 }

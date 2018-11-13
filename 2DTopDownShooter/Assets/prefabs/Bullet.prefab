@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052e47118e5dcaa4892677fd378daf6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1500
+  impactSprite: {fileID: 21300000, guid: ea3c7c4ff27977e469090908a7a5fe39, type: 3}
+  speed: 3000
   maxDistance: 5000
 --- !u!212 &212635079477809718
 SpriteRenderer:
@@ -126,12 +127,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9681d42b350d2b040a8b46e9448eb647, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99bafca035fdf054e815edb9702f16f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.84, y: 1.27}
+  m_Size: {x: 1, y: 0.77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

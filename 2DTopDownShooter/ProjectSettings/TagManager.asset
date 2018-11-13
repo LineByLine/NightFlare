@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - PlayerBall
+  - PlayerManager
   layers:
   - Default
   - TransparentFX

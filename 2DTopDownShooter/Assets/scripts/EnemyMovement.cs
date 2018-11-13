@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour {
 
         waitTime = startWaitTime;
 		//Looks for the first GameObject tagged as "Player" and sets that GO's transform as the player attribute.
-		player = GameObject.FindGameObjectsWithTag("Player")[0];
+		player = GameObject.FindGameObjectsWithTag("PlayerBall")[0];
 		//At start, assume nothing is obstructing enemy from player so set player's transform as target
 		target = player.transform;
     }
