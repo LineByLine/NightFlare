@@ -34,13 +34,20 @@ public class playerMovementSegC : MonoBehaviour {
 		if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
 		{
 			playerY = Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime;
-			rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position + new Vector3(0.0f, playerY, 0.0f), moveSpeed * Time.deltaTime));
+		}
+		else
+		{
+			playerY = 0f;
 		}
 		//player moves left or right
 		if(Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
 		{
 			playerX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-			rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position + new Vector3(playerX, 0.0f, 0.0f), moveSpeed * Time.deltaTime));
 		}
+		else
+		{
+			playerX = 0f;
+		}
+		rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position + (new Vector3(playerX, playerY, 0.0f)).normalized, moveSpeed * Time.deltaTime));
 	}
 }

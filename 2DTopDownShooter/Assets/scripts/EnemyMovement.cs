@@ -15,16 +15,16 @@ public class EnemyMovement : MonoBehaviour {
     private Rigidbody2D rb;
 
     [Header("Attack")]
-    private float attackProgress = 0;
     public Sprite defaultSprite;
     public Sprite attackSprite;
     private SpriteRenderer sr;
     public float attackRange;
-    public float attackTime;
+    private EnemyAttackSegC attackData;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        attackData = GetComponentsInChildren<EnemyAttackSegC>()[0];
         sr = GetComponentsInChildren<SpriteRenderer>()[0];
 
         waitTime = startWaitTime;
@@ -36,6 +36,19 @@ public class EnemyMovement : MonoBehaviour {
 
     void Update()
     {
+        
+        if(attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Attacking)
+        {
+            sr.sprite = attackSprite;
+            currentAction = State.attack;
+        }
+        else if(attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Cooldown || 
+            attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Windup)
+        {
+            sr.sprite = defaultSprite;
+            currentAction = State.attack;
+        }
+        
         switch(currentAction)
         {
             case State.chase:
@@ -63,13 +76,6 @@ public class EnemyMovement : MonoBehaviour {
         Look(target);
         //Move rigidbody and enemy position towards the target, smoothing any collisions with other objects.
         rb.MovePosition(Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime));
-
-        //Start attacking if player is close enough
-        if(Vector2.Distance(transform.position, player.transform.position) <= attackRange)
-        {
-            currentAction = State.attack;
-            sr.sprite = attackSprite;
-        }
         
     }
 
@@ -98,10 +104,8 @@ public class EnemyMovement : MonoBehaviour {
         //Track how long the enemy has been attacking.
         //If it's longer than or equal the time it should
         //take to attack, stop and go back to chasing the player.
-        attackProgress += Time.deltaTime;
-        if(attackProgress >= attackTime)
+        if(attackData.getAttackProgress() <= 0)
         {
-            attackProgress = 0;
             sr.sprite = defaultSprite;
             currentAction = State.chase;
         }
