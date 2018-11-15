@@ -962,11 +962,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114804377566932078, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb,
-        type: 2}
-      propertyPath: windupTime
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb, type: 2}
   m_IsPrefabAsset: 0
