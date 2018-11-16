@@ -14,7 +14,7 @@ public class playerShooting : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		useClip = firingPoint.GetComponent<weaponInfo>();
+        useClip = firingPoint.GetComponent<weaponInfo>();
 	}
 	
 	// Update is called once per frame
