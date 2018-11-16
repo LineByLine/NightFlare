@@ -63,7 +63,7 @@ public class EnemyAttackSegC : MonoBehaviour {
 			}
 			case AttackState.Cooldown:
 			{
-				if(currentAttackCooldownTime > 0)
+				if(currentAttackCooldownTime > windupTime)
 				{
 					currentAttackCooldownTime -= Time.deltaTime;
 				}
@@ -95,7 +95,7 @@ public class EnemyAttackSegC : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.CompareTag("PlayerBall"))
-			shouldAttack = false;
+			shouldAttack = true;
 	}
 
 	void OnTriggerStay2D(Collider2D other)
