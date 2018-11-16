@@ -26,17 +26,10 @@ public class playerShootingProjectile : MonoBehaviour {
 
 	void fire()
 	{
-		//if your current ammo is empty, we try to reload
-		if (useClip.currentClip == 0)
-		{
-			useClip.reload();
-		}
-		else if (currentFireCooldown >= fireCooldown)//you can fire if u have ammo in your clip and fireCooldown has worn off
+		if (currentFireCooldown >= fireCooldown)//you can fire if u have ammo in your clip and fireCooldown has worn off
 		{
 			//Spawn bullet
 			GameObject.Instantiate(bulletObject, gameObject.transform.position,  gameObject.transform.rotation);
-			//fires one bullet, subtracting from the current ammo 
-			useClip.currentClip--;
 			//Start FireCooldown
 			currentFireCooldown = 0;
 		}
