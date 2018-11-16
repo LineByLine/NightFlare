@@ -25,7 +25,7 @@ public class weaponInfo : MonoBehaviour {
 		if (currentClip <= 0 && currentAmmo > 0)
 		{
 			currentClip = maxClip;
-			currentAmmo -= maxClip;
+			//currentAmmo -= maxClip; Commented out to give player infinite ammo
 		}
 
 		//of course if total ammo is 0, then nothing happens
