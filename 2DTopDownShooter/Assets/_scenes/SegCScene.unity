@@ -962,6 +962,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114804377566932078, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb,
+        type: 2}
+      propertyPath: windupSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3878040d1d7dd7544941fc2e16846973,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb, type: 2}
   m_IsPrefabAsset: 0
@@ -1215,6 +1221,7 @@ MonoBehaviour:
   maxHp: 50
   healthBar: {fileID: 1384241316}
   healthText: {fileID: 269109607}
+  GameOverContainer: {fileID: 0}
 --- !u!114 &1237511952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,7 +1248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ba44ab04c515e4db453f44ee70898d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentClip: -1
   reloadTime: 1.5
 --- !u!1 &1384241314
 GameObject:
