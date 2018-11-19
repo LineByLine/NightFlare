@@ -5,21 +5,22 @@ using UnityEngine;
 public class EnemyAttackSegC : MonoBehaviour {
 	public float damage;
 	public float attackTime;
-	private float attackProgress = 0;
+	private float currentCounter = 0;
 	public float attackCooldownTime;
-	private float currentAttackCooldownTime = 0;
 	public float windupTime;
-	private float currentWindup = 0;
 	public Sprite defaultSprite;
     public Sprite attackSprite;
+	public Sprite windupSprite;
     private SpriteRenderer sr;
 
 	public enum AttackState {Normal, Windup, Attacking, Cooldown};
 	private AttackState currentAttackState = AttackState.Normal;
 
 	private bool shouldAttack = false;
+	private GameObject player;
 
 	void Start () {
+		player = GameObject.FindGameObjectsWithTag("PlayerBall")[0];
 		sr = GetComponent<SpriteRenderer>();
 		sr.sprite = defaultSprite;
 	}
@@ -29,96 +30,90 @@ public class EnemyAttackSegC : MonoBehaviour {
 		switch (currentAttackState)
 		{
 			case AttackState.Normal:
-			{
-				break;
-			}
-			case AttackState.Windup:
-			{
-				if (currentWindup <= windupTime)
-				{
-					currentWindup += Time.deltaTime;
-				}
-				else
-				{
-					currentWindup = 0;
-					currentAttackState = AttackState.Attacking;
-					sr.sprite = attackSprite;
-				}
-				break;
-			}
-			case AttackState.Attacking:
-			{
-				if (attackProgress < attackTime)
-				{
-					attackProgress += Time.deltaTime;
-				}
-				else
-				{
-					sr.sprite = defaultSprite;
-					attackProgress = 0;
-					currentAttackState = AttackState.Cooldown;
-					currentAttackCooldownTime = attackCooldownTime;
-				}
-				break;
-			}
-			case AttackState.Cooldown:
-			{
-				if(currentAttackCooldownTime > windupTime)
-				{
-					currentAttackCooldownTime -= Time.deltaTime;
-				}
-				else if(shouldAttack)
+				if(shouldAttack)
 				{
 					currentAttackState = AttackState.Windup;
 				}
-				else
-				{
-					currentAttackState = AttackState.Normal;
-				}
 				break;
-			}
+			case AttackState.Windup:
+				Windup();
+				break;
+			case AttackState.Attacking:
+				Attack();
+				break;
+			case AttackState.Cooldown:
+				Cooldown();
+				break;
 			default:
-			{
 				break;
-			}
 		}
 	}
 
-	void Attack(Collider2D other)
+	void Attack()
 	{
-		if(attackProgress == 0)
+		if(currentCounter == 0)
 		{
-			other.GetComponent<PlayerHealth>().TakeDamage(damage);
+			player.GetComponent<PlayerHealth>().TakeDamage(damage);
 		}
+		if (currentCounter < attackTime)
+		{			
+			currentCounter += Time.deltaTime;
+		}
+		else
+		{
+			TransitionAttackToCooldown();
+		}
+	}
+
+	void Cooldown()
+	{
+		if(currentCounter < attackCooldownTime - windupTime)
+		{
+			currentCounter += Time.deltaTime;
+		}
+		else if(shouldAttack)
+		{
+			currentCounter = 0;
+			currentAttackState = AttackState.Windup;
+		}
+		else
+		{
+			currentCounter = 0;
+			currentAttackState = AttackState.Normal;
+		}
+	}
+
+	void Windup()
+	{
+		if (currentCounter < windupTime)
+		{
+			currentCounter += Time.deltaTime;
+		}
+		else
+		{
+			currentCounter = 0;
+			currentAttackState = AttackState.Attacking;
+			sr.sprite = attackSprite;
+		}
+	}
+
+	void TransitionAttackToCooldown()
+	{
+		currentAttackState = AttackState.Cooldown;
+		sr.sprite = defaultSprite; //rest sprite
+		currentCounter = 0;
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.CompareTag("PlayerBall"))
+		if(other.CompareTag(player.tag))
 			shouldAttack = true;
-	}
-
-	void OnTriggerStay2D(Collider2D other)
-	{
-		if(currentAttackState == AttackState.Attacking && other.CompareTag("PlayerBall"))
-		{
-			Attack(other);
-		}
-		else if(currentAttackState == AttackState.Normal && other.CompareTag("PlayerBall"))
-		{
-			currentAttackState = AttackState.Windup;
-		}
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if(other.CompareTag("PlayerBall"))
+		if(other.CompareTag(player.tag))
 			shouldAttack = false;
-	}
-
-	public float getAttackProgress()
-	{
-		return attackProgress;
 	}
 
 	public AttackState getCurrentAttackState()
