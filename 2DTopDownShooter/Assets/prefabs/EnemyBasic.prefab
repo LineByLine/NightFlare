@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e1cc3778e37c3449d3ab08bceebcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 12
   waitTime: 0
   startWaitTime: 0
   currentAction: 0
@@ -198,11 +198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  attackTime: 0.5
-  attackCooldownTime: 1
+  attackTime: 0.2
+  attackCooldownTime: 0.4
   windupTime: 0.1
   defaultSprite: {fileID: 0}
   attackSprite: {fileID: 21300000, guid: ea3c7c4ff27977e469090908a7a5fe39, type: 3}
+  windupSprite: {fileID: 21300000, guid: 3878040d1d7dd7544941fc2e16846973, type: 3}
 --- !u!212 &212634141346073980
 SpriteRenderer:
   m_ObjectHideFlags: 1

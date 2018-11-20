@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour {
     public State currentAction = State.chase;
     //Physics stuff relevant to movement
     private Rigidbody2D rb;
+    private float originalMass;
 
     [Header("Attack")]
     public Sprite defaultSprite;
@@ -24,6 +25,7 @@ public class EnemyMovement : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalMass = rb.mass;
         attackData = GetComponentsInChildren<EnemyAttackSegC>()[0];
         sr = GetComponentsInChildren<SpriteRenderer>()[0];
 
@@ -98,6 +100,7 @@ public class EnemyMovement : MonoBehaviour {
         from the player.*/
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
+        rb.mass = 100000f;
         
         //Look(target);
         
@@ -108,6 +111,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             sr.sprite = defaultSprite;
             currentAction = State.chase;
+            rb.mass = originalMass;
         }
     }
 }
