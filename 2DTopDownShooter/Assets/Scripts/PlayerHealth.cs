@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour {
     playerMovement playerMovement; //reference to moving script
     playerRotation playerRotation; //reference to player rotation script
     playerMovementSegC playerMovementSegC;
+    playerShootingProjectile playerShootingProjectile;
 
     //NEED REFERENCE TO ATTACK/SHOOTING SCRIPT
 
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour {
         playerMovement = GetComponent<playerMovement>();
         playerRotation = GetComponentInChildren <playerRotation>(); 
         playerMovementSegC = GetComponent<playerMovementSegC>();
+        playerShootingProjectile = GetComponent<playerShootingProjectile>();
         //INSERT GETCOMPONENT FOR ATTACK/SHOOTING
 
     }
@@ -69,11 +71,12 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Death()
     {
-        Debug.Log("DEATH");
+        //Debug.Log("DEATH");
         isDead = true;
         //playerMovement.enabled = false;
         playerRotation.enabled = false;
         playerMovementSegC.enabled = false;
+        playerShootingProjectile.enabled = false;
         //INSERT ATTACK/SHOOTING TO BE DISABLED
 
         GameOverContainer.SetActive(true);
