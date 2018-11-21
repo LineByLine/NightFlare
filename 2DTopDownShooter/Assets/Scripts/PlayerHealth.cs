@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour {
 
     playerMovement playerMovement; //reference to moving script
     playerRotation playerRotation; //reference to player rotation script
+    playerMovementSegC playerMovementSegC;
+    playerShootingProjectile playerShootingProjectile;
+
     //NEED REFERENCE TO ATTACK/SHOOTING SCRIPT
 
     bool isDead = false;
@@ -27,14 +30,19 @@ public class PlayerHealth : MonoBehaviour {
         healthBar.fillAmount = hp / maxHp;
         StartCoroutine(addHealth()); //health regeneration
         playerMovement = GetComponent<playerMovement>();
-        playerRotation = GetComponentInChildren <playerRotation>(); //why doesn't this work???, Player can still rotate after death...
+        playerRotation = GetComponentInChildren <playerRotation>(); 
+        playerMovementSegC = GetComponent<playerMovementSegC>();
+        playerShootingProjectile = GetComponent<playerShootingProjectile>();
         //INSERT GETCOMPONENT FOR ATTACK/SHOOTING
 
     }
 
     // Update is called once per frame
     void Update () {
-
+        if (hp <= 0) //What happens if Player dies
+        {
+            Death();
+        }
     }
     public void TakeDamage(float damage)
     {
@@ -63,10 +71,12 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Death()
     {
-        Debug.Log("DEATH");
+        //Debug.Log("DEATH");
         isDead = true;
-        playerMovement.enabled = false;
+        //playerMovement.enabled = false;
         playerRotation.enabled = false;
+        playerMovementSegC.enabled = false;
+        playerShootingProjectile.enabled = false;
         //INSERT ATTACK/SHOOTING TO BE DISABLED
 
         GameOverContainer.SetActive(true);
