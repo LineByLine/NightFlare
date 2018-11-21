@@ -8,10 +8,20 @@ public class Waves : MonoBehaviour {
     public int NumEnemiesTwo = 10;
     private GameObject[] NumEnemies;
     private GameObject enemy;
+    private PlayerHealth health;
+    private EnemyAttackSegC enemyDamage;
+    private enemyBehavior enemyHealth;
+    private float playerHP;
     private bool EnemiesPresent;
 	// Use this for initialization
 	void Start () {
         EnemiesPresent = false;
+        GameObject player = GameObject.Find("PlayerBall");
+        health = player.GetComponent<PlayerHealth>();
+        GameObject enemy = GameObject.Find("EnemyBasic");
+        enemyDamage = enemy.GetComponent<EnemyAttackSegC>();
+        enemyHealth = enemy.GetComponent<enemyBehavior>();
+        playerHP = health.maxHp;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +30,13 @@ public class Waves : MonoBehaviour {
         {
             EnemiesPresent = false;
             Wave++;
+            if(Wave > 1)
+            {
+                health.maxHp += 50;
+                enemyDamage.damage += 50;
+                enemyHealth.startingHealth += 50;
+
+            }
         }
         if(Wave > 2)
         {
