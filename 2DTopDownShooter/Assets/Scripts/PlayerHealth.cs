@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Death()
     {
-        Debug.Log("DEATH");
+        //Debug.Log("DEATH");
         isDead = true;
         //playerMovement.enabled = false;
         playerRotation.enabled = false;
