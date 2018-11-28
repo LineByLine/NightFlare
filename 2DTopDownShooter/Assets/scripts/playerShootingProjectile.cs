@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* HOW TO USE THIS SCRIPT:
+It doesn't actually matter which GameObject in the scene you attach this to.
+Just make sure you set the firingPoint to the playerBall's transform,
+and set the bulletObject to some projectile. Prefabs work nicely for bulletObject.
+ */
 public class playerShootingProjectile : MonoBehaviour {
+	[Tooltip("GameObject to instantiate when firing")]	
 	public GameObject bulletObject;
-	[Header("Shooting Number Variables")]
-	public Transform firingPoint; //Where the bullet will travel/check from (realistic gun)
+	[Tooltip("Where the bullet will travel/check from (realistic gun)")]	
+	public Transform firingPoint;
 	private weaponInfoSegC useClip; //the weapon info script to access variables
+	[Tooltip("Interval in between firing subsequent bullets.")]	
 	public float fireCooldown;
 	private float currentFireCooldown;
 	// Use this for initialization
@@ -29,7 +35,7 @@ public class playerShootingProjectile : MonoBehaviour {
 		if (currentFireCooldown >= fireCooldown)//you can fire if u have ammo in your clip and fireCooldown has worn off
 		{
 			//Spawn bullet
-			GameObject.Instantiate(bulletObject, gameObject.transform.position,  gameObject.transform.rotation);
+			GameObject.Instantiate(bulletObject, firingPoint.position,  gameObject.transform.rotation);
 			//Start FireCooldown
 			currentFireCooldown = 0;
 		}

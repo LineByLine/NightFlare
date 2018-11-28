@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Quit : MonoBehaviour {
+public class StartGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +15,9 @@ public class Quit : MonoBehaviour {
 		
 	}
 
-    public void endTheGame()
+    public void startGame()
     {
-        Debug.Log("Quit game button works");
-        Application.Quit();
+        Debug.Log("Start Game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
