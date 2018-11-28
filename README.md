@@ -1,2 +1,2 @@
 # Night Flare Game Project
-_Repository for Scaffold Team 1's game project_ Night Flare.
+University of California, Irvine | Videogame Development Club (VGDC) - Night Flare (Game Project 2018)
