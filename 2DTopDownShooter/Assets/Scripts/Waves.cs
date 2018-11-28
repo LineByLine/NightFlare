@@ -1,67 +1,85 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Waves : MonoBehaviour {
-    private int Wave = 1;
-    public int NumEnemiesOne = 5;
-    public int NumEnemiesTwo = 10;
+    private int Wave = 0;
+    public int WaveOneEnemies;
+    public int WaveTwoEnemies;
+    public int numberOfEnemies;
+    public int enemyHealthOrigin;
+    public int enemyDamageOrigin;
+    public GameObject playerChar;
+    public GameObject enemyType;
+    public Transform SpawnPoint;
     private GameObject[] NumEnemies;
-    private GameObject enemy;
     private PlayerHealth health;
     private EnemyAttackSegC enemyDamage;
     private enemyBehavior enemyHealth;
+    private RestartRound restarting;
     private float playerHP;
     private bool EnemiesPresent;
 	// Use this for initialization
 	void Start () {
         EnemiesPresent = false;
-        GameObject player = GameObject.Find("PlayerBall");
-        health = player.GetComponent<PlayerHealth>();
-        GameObject enemy = GameObject.Find("EnemyBasic");
-        enemyDamage = enemy.GetComponent<EnemyAttackSegC>();
-        enemyHealth = enemy.GetComponent<enemyBehavior>();
+        health = playerChar.GetComponent<PlayerHealth>();
+        enemyDamage = enemyType.GetComponent<EnemyAttackSegC>();
+        enemyHealth = enemyType.GetComponent<enemyBehavior>();
         playerHP = health.maxHp;
-	}
+        enemyHealth.startingHealth = enemyHealthOrigin;
+        NumEnemies = new GameObject[numberOfEnemies];
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if(NumEnemies.Length == 0)
-        {
-            EnemiesPresent = false;
-            Wave++;
-            if(Wave > 1)
-            {
-                health.maxHp += 50;
-                enemyDamage.damage += 50;
-                enemyHealth.startingHealth += 50;
-
-            }
-        }
+        //Debug.Log(Wave + " before");
         if(Wave > 2)
         {
             Debug.Log("YOU WIN");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         }
-		if(!EnemiesPresent) {
+        for (int i = 0; i < numberOfEnemies; i++) {
+            if (NumEnemies[i] != null)
+            {
+                EnemiesPresent = true;
+                break;
+            }
+            else
+            {
+                EnemiesPresent = false;
+            }
+            Debug.Log("During for Loop at: " + i + ": " + EnemiesPresent);
+        }
+        //Debug.Log(EnemiesPresent);
+        if (!EnemiesPresent)
+        {
+            Wave++;
             SpawnEnemies();
         }
-        
-	}
-    private void SpawnEnemies()
+        //Debug.Log(Wave + " After");
+    }
+    public void SpawnEnemies()
     {
-        if (Wave == 1) {
-            for (int i = 0; i < NumEnemiesOne; i++)
-            {
-
-            }
-            EnemiesPresent = true;
-        }
-        if(Wave == 2)
+        if (Wave == 1)
         {
-            for(int i = 0;i < NumEnemiesTwo; i++)
+            for (int i = 0; i < WaveOneEnemies; i++)
             {
-
+                NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
             }
+        Debug.Log("Spawning 1");
+        }
+        if (Wave == 2)
+        {
+            health.maxHp *= 2;
+            for (int i = 0; i < WaveTwoEnemies; i++)
+            {
+                NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
+                enemyHealth.startingHealth = 2 * enemyHealthOrigin;
+            }
+            //enemyDamage.damage = 2 * enemyDamageOrigin;
+            Debug.Log("Spawning 2");
         }
     }
 }
