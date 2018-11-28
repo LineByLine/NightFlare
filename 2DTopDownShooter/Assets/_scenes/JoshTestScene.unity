@@ -399,7 +399,7 @@ MonoBehaviour:
   bulletObject: {fileID: 1845208970114932, guid: 8469378b698021d468c913436b5090f2,
     type: 2}
   firingPoint: {fileID: 273374637}
-  fireCooldown: 0
+  fireCooldown: 0.2
 --- !u!114 &273374639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,6 +944,8 @@ MonoBehaviour:
   enemyDamageOrigin: 5
   playerChar: {fileID: 273374636}
   enemyType: {fileID: 1406963844965778, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb, type: 2}
+  enemyDamageType: {fileID: 1412369148038540, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb,
+    type: 2}
   SpawnPoint: {fileID: 859396473}
 --- !u!1 &1158060311
 GameObject:

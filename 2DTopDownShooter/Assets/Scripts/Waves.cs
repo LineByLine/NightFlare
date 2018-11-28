@@ -12,22 +12,23 @@ public class Waves : MonoBehaviour {
     public int enemyDamageOrigin;
     public GameObject playerChar;
     public GameObject enemyType;
+    public GameObject enemyDamageType;
     public Transform SpawnPoint;
     private GameObject[] NumEnemies;
     private PlayerHealth health;
     private EnemyAttackSegC enemyDamage;
     private enemyBehavior enemyHealth;
-    private RestartRound restarting;
     private float playerHP;
     private bool EnemiesPresent;
 	// Use this for initialization
 	void Start () {
         EnemiesPresent = false;
         health = playerChar.GetComponent<PlayerHealth>();
-        enemyDamage = enemyType.GetComponent<EnemyAttackSegC>();
+        enemyDamage = enemyDamageType.GetComponent<EnemyAttackSegC>();
         enemyHealth = enemyType.GetComponent<enemyBehavior>();
         playerHP = health.maxHp;
         enemyHealth.startingHealth = enemyHealthOrigin;
+        enemyDamage.damage = enemyDamageOrigin;
         NumEnemies = new GameObject[numberOfEnemies];
     }
 	
@@ -72,13 +73,12 @@ public class Waves : MonoBehaviour {
         }
         if (Wave == 2)
         {
-            health.maxHp *= 2;
             for (int i = 0; i < WaveTwoEnemies; i++)
             {
                 NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
                 enemyHealth.startingHealth = 2 * enemyHealthOrigin;
+                enemyDamage.damage = 2 * enemyDamageOrigin;
             }
-            //enemyDamage.damage = 2 * enemyDamageOrigin;
             Debug.Log("Spawning 2");
         }
     }
