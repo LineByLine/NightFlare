@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour {
     public State currentAction = State.chase;
     //Physics stuff relevant to movement
     private Rigidbody2D rb;
+    private float originalMass;
 
     [Header("Attack")]
     public Sprite defaultSprite;
@@ -24,19 +25,20 @@ public class EnemyMovement : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalMass = rb.mass;
         attackData = GetComponentsInChildren<EnemyAttackSegC>()[0];
         sr = GetComponentsInChildren<SpriteRenderer>()[0];
 
         waitTime = startWaitTime;
-		//Looks for the first GameObject tagged as "Player" and sets that GO's transform as the player attribute.
+		
+        //Looks for the first GameObject tagged as "Player" and sets that GO's transform as the player attribute.
 		player = GameObject.FindGameObjectsWithTag("PlayerBall")[0];
 		//At start, assume nothing is obstructing enemy from player so set player's transform as target
 		target = player.transform;
     }
 
     void Update()
-    {
-        
+    {       
         if(attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Attacking)
         {
             sr.sprite = attackSprite;
@@ -98,16 +100,18 @@ public class EnemyMovement : MonoBehaviour {
         from the player.*/
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
+        rb.mass = 100000f;
         
         //Look(target);
         
         //Track how long the enemy has been attacking.
         //If it's longer than or equal the time it should
         //take to attack, stop and go back to chasing the player.
-        if(attackData.getAttackProgress() <= 0)
+        if(attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Normal)
         {
             sr.sprite = defaultSprite;
             currentAction = State.chase;
+            rb.mass = originalMass;
         }
     }
 }

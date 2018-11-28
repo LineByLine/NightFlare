@@ -8,7 +8,6 @@ public class BulletBehavior : MonoBehaviour {
 	private Rigidbody2D rb;
 	public float speed;
 	public float maxDistance;
-	private enemyBehavior damaging; //the enemy script to access variables
 	private float distTravelled;
 
 
@@ -42,8 +41,7 @@ public class BulletBehavior : MonoBehaviour {
 		{
 			rb.simulated = false;
 			sr.sprite = impactSprite;
-			damaging = collision.gameObject.GetComponent<enemyBehavior>();
-			damaging.currentHealth--;
+			collision.gameObject.GetComponent<enemyBehavior>().currentHealth--;
 			Destroy(gameObject, 0.5f);
 		}
 		else

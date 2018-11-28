@@ -9,7 +9,7 @@ public class playerMovementSegC : MonoBehaviour {
 	private GameObject mainCamera;
 	public float playerX = 0; //player position x
 	public float playerY = 0; //player position y
-	public float moveSpeed = 15.0f; //speed of the player
+	public float moveSpeed; //speed of the player
 	
 	// Use this for initialization
 	void Start () {
