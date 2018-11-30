@@ -16,8 +16,9 @@ public class PlayerHealth : MonoBehaviour {
 
     playerMovement playerMovement; //reference to moving script
     playerRotation playerRotation; //reference to player rotation script
-    playerMovementSegC playerMovementSegC;
+    AdrenalineSegCMovement AdrenalineSegCMovement;
     playerShootingProjectile playerShootingProjectile;
+    playerMovementSegC playerMovementSegC;
 
     //NEED REFERENCE TO ATTACK/SHOOTING SCRIPT
 
@@ -31,8 +32,10 @@ public class PlayerHealth : MonoBehaviour {
         StartCoroutine(addHealth()); //health regeneration
         playerMovement = GetComponent<playerMovement>();
         playerRotation = GetComponentInChildren <playerRotation>(); 
-        playerMovementSegC = GetComponent<playerMovementSegC>();
+        AdrenalineSegCMovement = GetComponent<AdrenalineSegCMovement>();
         playerShootingProjectile = GetComponent<playerShootingProjectile>();
+        playerMovementSegC = GetComponent<playerMovementSegC>();
+
         //INSERT GETCOMPONENT FOR ATTACK/SHOOTING
 
     }
@@ -75,8 +78,9 @@ public class PlayerHealth : MonoBehaviour {
         isDead = true;
         //playerMovement.enabled = false;
         playerRotation.enabled = false;
-        playerMovementSegC.enabled = false;
+        AdrenalineSegCMovement.enabled = false;
         playerShootingProjectile.enabled = false;
+        playerMovementSegC.enabled = false;
         //INSERT ATTACK/SHOOTING TO BE DISABLED
 
         GameOverContainer.SetActive(true);

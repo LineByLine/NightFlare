@@ -867,6 +867,7 @@ GameObject:
   - component: {fileID: 496639110}
   - component: {fileID: 496639109}
   - component: {fileID: 496639112}
+  - component: {fileID: 496639117}
   m_Layer: 0
   m_Name: PlayerBall
   m_TagString: PlayerBall
@@ -1043,6 +1044,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &496639117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 496639107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701a90ab72258244aa9d107c64a5d378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSpeed: 10
+  runSpeed: 20
+  sp: 0
+  delayTimer: 3
+  spBar: {fileID: 0}
+  spText: {fileID: 0}
 --- !u!1 &610510257
 GameObject:
   m_ObjectHideFlags: 0
