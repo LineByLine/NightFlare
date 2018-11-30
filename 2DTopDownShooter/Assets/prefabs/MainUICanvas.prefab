@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 114885889353671742}
   m_Layer: 5
   m_Name: CurrentStamBar
-  m_TagString: Untagged
+  m_TagString: StamBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 114601985500668862}
   m_Layer: 5
   m_Name: StamText
-  m_TagString: Untagged
+  m_TagString: StamText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

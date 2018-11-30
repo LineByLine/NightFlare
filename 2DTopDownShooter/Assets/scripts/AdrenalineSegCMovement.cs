@@ -30,11 +30,11 @@ public class AdrenalineSegCMovement : MonoBehaviour {
     private float playerY = 0f;
     private float playerX = 0f;
     
-    /*=================*/[Header("Stamina UI")]/*=================*/
-    [Tooltip("Image on the Canvas/Scene to display the current stamina.")]
-    public Image spBar;
-    [Tooltip("Text on the Canvas/Scene to display the current and max stamina.")]
-    public Text spText;
+    /*=================*//*Stamina UI*//*=================*/
+    //Image on the Canvas/Scene to display the current stamina.
+    private Image spBar;
+    //Text on the Canvas/Scene to display the current and max stamina.
+    private Text spText;
 	
     /*=================*//*Collision and Camera *//*=================*/
 	//Rigidbody to handle collisions and stop movement
@@ -44,6 +44,8 @@ public class AdrenalineSegCMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        spBar = GameObject.FindGameObjectsWithTag("StamBar")[0].GetComponentInChildren<Image>();
+        spText = GameObject.FindGameObjectsWithTag("StamText")[0].GetComponentInChildren<Text>();
         originSP = sp;
         originDelTime = delayTimer;
         moveSpeed = normalSpeed;
