@@ -44,6 +44,7 @@ public class playerShootingProjectile : MonoBehaviour {
 			GameObject.Instantiate(bulletObject, firingPoint.position,  gameObject.transform.rotation);
 			//Start FireCooldown
 			currentFireCooldown = 0;
+
             source.PlayOneShot(shootingSoundEffect);//Shooting sound effect
         }
 	}

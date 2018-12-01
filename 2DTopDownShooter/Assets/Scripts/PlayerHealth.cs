@@ -20,13 +20,19 @@ public class PlayerHealth : MonoBehaviour {
     playerShootingProjectile playerShootingProjectile;
     playerMovementSegC playerMovementSegC;
 
-    //NEED REFERENCE TO ATTACK/SHOOTING SCRIPT
+
+    public AudioClip takingDamageSound; //Damage sound effect
+    private AudioSource source;
+
+
 
     bool isDead = false;
 
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>(); // Damage sound effect
+
         healthText.text = (hp / maxHp * 100).ToString() + "%";
         healthBar.fillAmount = hp / maxHp;
         StartCoroutine(addHealth()); //health regeneration
@@ -36,7 +42,7 @@ public class PlayerHealth : MonoBehaviour {
         playerShootingProjectile = GetComponent<playerShootingProjectile>();
         playerMovementSegC = GetComponent<playerMovementSegC>();
 
-        //INSERT GETCOMPONENT FOR ATTACK/SHOOTING
+
 
     }
 
@@ -54,6 +60,8 @@ public class PlayerHealth : MonoBehaviour {
         float currentHp = hp / maxHp;
         healthText.text = (currentHp * 100).ToString() + "%";
         healthBar.fillAmount = currentHp;
+
+        source.PlayOneShot(takingDamageSound);//Shooting sound effect
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -81,9 +89,11 @@ public class PlayerHealth : MonoBehaviour {
         AdrenalineSegCMovement.enabled = false;
         playerShootingProjectile.enabled = false;
         playerMovementSegC.enabled = false;
-        //INSERT ATTACK/SHOOTING TO BE DISABLED
 
+        //INSERT ATTACK/SHOOTING TO BE DISABLED
+        source.volume = 0;
         GameOverContainer.SetActive(true);
+        
     }
 
     IEnumerator addHealth() //Player recovers health up to 3/4 of maximum HP
