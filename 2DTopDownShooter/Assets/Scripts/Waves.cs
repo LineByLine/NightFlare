@@ -26,6 +26,8 @@ public class Waves : MonoBehaviour {
     private PlayerHealth health;
     private EnemyAttackSegC enemyDamage;
     private enemyBehavior enemyHealth;
+    private IEnumerator spawn1;
+    private IEnumerator spawn2;
     private float playerHP;
     private bool EnemiesPresent;
     // Use this for initialization
@@ -42,6 +44,8 @@ public class Waves : MonoBehaviour {
         FirstSpawn = SpawnOne.GetComponent<Waves>();
         SecondSpawn = SpawnTwo.GetComponent<Waves>();
         ThirdSpawn = SpawnThree.GetComponent<Waves>();
+        spawn1 = SpawnEnemies();
+        spawn2 = SpawnEnemiesTwo();
     }
 
     // Update is called once per frame
@@ -68,32 +72,43 @@ public class Waves : MonoBehaviour {
         bool secondspawnen = !SecondSpawn.EnemiesPresent;
         bool thirdspawnen = !ThirdSpawn.EnemiesPresent;
         bool nextwave = !EnemiesPresent && !FirstSpawn.EnemiesPresent && !SecondSpawn.EnemiesPresent && !ThirdSpawn.EnemiesPresent;
-        Debug.Log("This: " + !EnemiesPresent + " One: " + firstspawnen + " Two: " + secondspawnen + " Three: " + thirdspawnen + " Move one to next wave? " + nextwave + " For Object: " + gameObject.name);
+        Debug.Log("Wave: " + Wave + " Spawn?: " + nextwave);
         if (nextwave)
         {
             Wave++;
-            SpawnEnemies();
+            if (Wave == 1)
+            {
+                StartCoroutine(spawn1);
+            }
+            if (Wave == 2)
+            {
+                StartCoroutine(spawn2);
+            }
         }
     }
-    public void SpawnEnemies()
+    private IEnumerator SpawnEnemies()
     {
         if (Wave == 1)
         {
             for (int i = 0; i < WaveOneEnemies; i++)
             {
                 NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
+                yield return new WaitForSeconds(1);
             }
             Debug.Log("Spawning 1");
+            StopCoroutine(spawn1);
         }
-        if (Wave == 2)
+    }
+    private IEnumerator SpawnEnemiesTwo()
+    {
+        for (int i = 0; i < WaveTwoEnemies; i++)
         {
-            for (int i = 0; i < WaveTwoEnemies; i++)
-            {
-                NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
-                enemyHealth.startingHealth = 2 * enemyHealthOrigin;
-                enemyDamage.damage = 2 * enemyDamageOrigin;
-            }
-            Debug.Log("Spawning 2");
+            NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
+            enemyHealth.startingHealth = 2 * enemyHealthOrigin;
+            enemyDamage.damage = 2 * enemyDamageOrigin;
+            yield return new WaitForSeconds(1);
         }
+        Debug.Log("Spawning 2");
+        StopCoroutine(spawn2);
     }
 }
