@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 215316749}
   m_Layer: 0
   m_Name: SpawnPointWest
-  m_TagString: SpawnPointType2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -502,6 +502,7 @@ MonoBehaviour:
     type: 2}
   firingPoint: {fileID: 273374637}
   fireCooldown: 0
+  shootingSoundEffect: {fileID: 0}
 --- !u!114 &273374639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +531,7 @@ MonoBehaviour:
   healthBar: {fileID: 123205476}
   healthText: {fileID: 638987719}
   GameOverContainer: {fileID: 0}
+  takingDamageSound: {fileID: 0}
 --- !u!114 &273374641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +745,7 @@ GameObject:
   - component: {fileID: 353079874}
   m_Layer: 0
   m_Name: SpawnPointSouth
-  m_TagString: SpawnPointType1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -769,8 +771,8 @@ MonoBehaviour:
   enemyDamageType: {fileID: 1412369148038540, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb,
     type: 2}
   SpawnOne: {fileID: 859396471}
-  SpawnTwo: {fileID: 215316748}
-  SpawnThree: {fileID: 2003583280}
+  SpawnTwo: {fileID: 2003583280}
+  SpawnThree: {fileID: 215316748}
   SpawnPoint: {fileID: 353079876}
   NumEnemies: []
   OtherEnemies: []
@@ -1066,7 +1068,7 @@ GameObject:
   - component: {fileID: 859396474}
   m_Layer: 0
   m_Name: SpawnPointNorth
-  m_TagString: SpawnPointType1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1151,8 +1153,8 @@ MonoBehaviour:
   enemyDamageType: {fileID: 1412369148038540, guid: 40a9daa4f2a2b5f4bbbb00545c812cbb,
     type: 2}
   SpawnOne: {fileID: 353079873}
-  SpawnTwo: {fileID: 215316748}
-  SpawnThree: {fileID: 2003583280}
+  SpawnTwo: {fileID: 2003583280}
+  SpawnThree: {fileID: 215316748}
   SpawnPoint: {fileID: 859396473}
   NumEnemies: []
   OtherEnemies: []
@@ -1445,7 +1447,7 @@ GameObject:
   - component: {fileID: 2003583281}
   m_Layer: 0
   m_Name: SpawnPointEast
-  m_TagString: SpawnPointType2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -50,7 +50,7 @@ public class Waves : MonoBehaviour {
         if (Wave > 2)
         {
             Debug.Log("YOU WIN");
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         for (int i = 0; i < numberOfEnemies; i++)
         {
@@ -68,8 +68,8 @@ public class Waves : MonoBehaviour {
         bool secondspawnen = !SecondSpawn.EnemiesPresent;
         bool thirdspawnen = !ThirdSpawn.EnemiesPresent;
         bool nextwave = !EnemiesPresent && !FirstSpawn.EnemiesPresent && !SecondSpawn.EnemiesPresent && !ThirdSpawn.EnemiesPresent;
-        Debug.Log("This: " + !EnemiesPresent + " One: " + firstspawnen + " Two: " + secondspawnen + " Three: " + thirdspawnen + " Move one to next wave? " + nextwave);
-        if (!EnemiesPresent && !FirstSpawn.EnemiesPresent && !SecondSpawn.EnemiesPresent && !ThirdSpawn.EnemiesPresent)
+        Debug.Log("This: " + !EnemiesPresent + " One: " + firstspawnen + " Two: " + secondspawnen + " Three: " + thirdspawnen + " Move one to next wave? " + nextwave + " For Object: " + gameObject.name);
+        if (nextwave)
         {
             Wave++;
             SpawnEnemies();
