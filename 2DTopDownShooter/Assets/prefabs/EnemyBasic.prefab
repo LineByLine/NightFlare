@@ -73,7 +73,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4363424628887820}
   - component: {fileID: 212634141346073980}
-  - component: {fileID: 114033723249672136}
   m_Layer: 0
   m_Name: OniShadowPresence
   m_TagString: Enemy
@@ -186,20 +185,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &114033723249672136
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593130935957744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555440d9a911303488f64f9ba3a21670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulse_range: 75
-  pulse_time: 1.5
-  max_alpha: 0.075
 --- !u!114 &114158450981012478
 MonoBehaviour:
   m_ObjectHideFlags: 1

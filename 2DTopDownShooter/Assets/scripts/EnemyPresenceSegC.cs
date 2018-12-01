@@ -42,7 +42,7 @@ public class EnemyPresenceSegC : MonoBehaviour {
 		sr.color = new Color(1f, 1f, 1f, fading ? sr.color.a - Time.deltaTime / effective_pulse_time: sr.color.a + Time.deltaTime / effective_pulse_time);
 		if(sr.color.a < 0 || sr.color.a > max_alpha)
 		{
-			fading = !fading;
+			//fading = !fading;
 		}
 	}
 
@@ -50,12 +50,14 @@ public class EnemyPresenceSegC : MonoBehaviour {
     void OnBecameInvisible()
     {
         should_pulse = false;
-		sr.color = new Color(1f, 1f, 1f, 0f);
+		sr.color = new Color(1f, 1f, 1f, max_alpha);
     }
 
     // ...and enable it again when it becomes visible.
     void OnBecameVisible()
     {
         should_pulse = true;
+		sr.color = new Color(1f, 1f, 1f, max_alpha);
+		fading = true;
     }
 }
