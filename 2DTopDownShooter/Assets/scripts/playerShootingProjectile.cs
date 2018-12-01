@@ -15,8 +15,14 @@ public class playerShootingProjectile : MonoBehaviour {
 	[Tooltip("Interval in between firing subsequent bullets.")]	
 	public float fireCooldown;
 	private float currentFireCooldown;
+
+    public AudioClip shootingSoundEffect; //Shooting sound effect
+    private AudioSource source;
+
 	// Use this for initialization
 	void Start () {
+        source = GetComponent<AudioSource>(); // Shooting sound effect
+
 		currentFireCooldown = fireCooldown;
         useClip = firingPoint.GetComponent<weaponInfoSegC>();
 	}
@@ -38,6 +44,8 @@ public class playerShootingProjectile : MonoBehaviour {
 			GameObject.Instantiate(bulletObject, firingPoint.position,  gameObject.transform.rotation);
 			//Start FireCooldown
 			currentFireCooldown = 0;
-		}
+
+            source.PlayOneShot(shootingSoundEffect);//Shooting sound effect
+        }
 	}
 }

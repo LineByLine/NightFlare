@@ -16,24 +16,33 @@ public class PlayerHealth : MonoBehaviour {
 
     playerMovement playerMovement; //reference to moving script
     playerRotation playerRotation; //reference to player rotation script
-    playerMovementSegC playerMovementSegC;
+    AdrenalineSegCMovement AdrenalineSegCMovement;
     playerShootingProjectile playerShootingProjectile;
+    playerMovementSegC playerMovementSegC;
 
-    //NEED REFERENCE TO ATTACK/SHOOTING SCRIPT
+
+    public AudioClip takingDamageSound; //Damage sound effect
+    private AudioSource source;
+
+
 
     bool isDead = false;
 
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>(); // Damage sound effect
+
         healthText.text = (hp / maxHp * 100).ToString() + "%";
         healthBar.fillAmount = hp / maxHp;
         StartCoroutine(addHealth()); //health regeneration
         playerMovement = GetComponent<playerMovement>();
         playerRotation = GetComponentInChildren <playerRotation>(); 
-        playerMovementSegC = GetComponent<playerMovementSegC>();
+        AdrenalineSegCMovement = GetComponent<AdrenalineSegCMovement>();
         playerShootingProjectile = GetComponent<playerShootingProjectile>();
-        //INSERT GETCOMPONENT FOR ATTACK/SHOOTING
+        playerMovementSegC = GetComponent<playerMovementSegC>();
+
+
 
     }
 
@@ -51,6 +60,8 @@ public class PlayerHealth : MonoBehaviour {
         float currentHp = hp / maxHp;
         healthText.text = (currentHp * 100).ToString() + "%";
         healthBar.fillAmount = currentHp;
+
+        source.PlayOneShot(takingDamageSound);//Shooting sound effect
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -75,11 +86,14 @@ public class PlayerHealth : MonoBehaviour {
         isDead = true;
         //playerMovement.enabled = false;
         playerRotation.enabled = false;
-        playerMovementSegC.enabled = false;
+        AdrenalineSegCMovement.enabled = false;
         playerShootingProjectile.enabled = false;
-        //INSERT ATTACK/SHOOTING TO BE DISABLED
+        playerMovementSegC.enabled = false;
 
+        //INSERT ATTACK/SHOOTING TO BE DISABLED
+        source.volume = 0;
         GameOverContainer.SetActive(true);
+        
     }
 
     IEnumerator addHealth() //Player recovers health up to 3/4 of maximum HP
