@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
     private GameObject player;
 	private Transform target;
-    public float speed;
-    public float waitTime;
-    public float startWaitTime;
+    public float speed = 7.5f;
+    public float waitTime = 0;
+    public float startWaitTime = 0;
     //States representing what type of movement Enemy should be executing right now
-    public enum State {chase, attack, die};
+    public enum State {chase, attack, die, still};
     public State currentAction = State.chase;
     //Physics stuff relevant to movement
     private Rigidbody2D rb;
@@ -19,15 +19,14 @@ public class EnemyMovement : MonoBehaviour {
     public Sprite defaultSprite;
     public Sprite attackSprite;
     private SpriteRenderer sr;
-    public float attackRange;
     private EnemyAttackSegC attackData;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         originalMass = rb.mass;
-        attackData = GetComponentsInChildren<EnemyAttackSegC>()[0];
-        sr = GetComponentsInChildren<SpriteRenderer>()[0];
+        attackData = GetComponentInChildren<EnemyAttackSegC>();
+        sr = GetComponentInChildren<SpriteRenderer>();
 
         waitTime = startWaitTime;
 		
@@ -38,8 +37,13 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     void Update()
-    {       
-        if(attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Attacking)
+    {
+        if(player.GetComponent<PlayerHealth>().hp <= 0)
+        {
+            sr.sprite = defaultSprite;
+            currentAction = State.still;
+        }
+        else if(attackData.getCurrentAttackState() == EnemyAttackSegC.AttackState.Attacking)
         {
             sr.sprite = attackSprite;
             currentAction = State.attack;
@@ -67,6 +71,11 @@ public class EnemyMovement : MonoBehaviour {
             {
                 break;
             }
+            case State.still:
+            {
+                rb.velocity = Vector2.zero;
+                break;
+            }
             default:
                 break;
         }
@@ -86,8 +95,8 @@ public class EnemyMovement : MonoBehaviour {
         /*This was given by the Scaffold.
         */
         Vector3 dir = toLook.position - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
+        sr.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void ExecuteAttack()

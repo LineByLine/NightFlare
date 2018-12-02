@@ -27,6 +27,10 @@ public class EnemyAttackSegC : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(player.GetComponent<PlayerHealth>().hp <= 0)
+		{
+			currentAttackState = AttackState.Normal;
+		}
 		switch (currentAttackState)
 		{
 			case AttackState.Normal:

@@ -37,11 +37,11 @@ public class BulletBehavior : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Enemy") //Damage any enemy this touches
+		HealthSegC health = collision.gameObject.GetComponent<HealthSegC>();
+		if(health) //Damage anything with health that this touches, except PlayerBall as stated in the start
 		{
-			rb.simulated = false;
-			sr.sprite = impactSprite;
-			collision.gameObject.GetComponent<enemyBehavior>().currentHealth--;
+			sr.sprite = impactSprite;  
+			collision.gameObject.GetComponent<HealthSegC>().TakeDamage(1f);
 			Destroy(gameObject, 0.5f);
 		}
 		else
