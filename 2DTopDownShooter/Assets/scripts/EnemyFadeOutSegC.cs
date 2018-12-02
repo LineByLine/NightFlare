@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* HOW TO USE THIS SCRIPT:
+Assuming you have a collider on the Flashlight Shadow Mask, 
+attach this script to the gameObject with the sprite you want to fade out under the mask.
+That SpriteRenderer must be either Visible Under Mask or have No Interaction with masks.
+ */
 public class EnemyFadeOutSegC : MonoBehaviour {
 	[Tooltip("Duration (in seconds) of the fade-out animation")]
 	public float fade_time = 1f;
