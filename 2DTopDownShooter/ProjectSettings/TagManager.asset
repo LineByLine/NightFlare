@@ -9,6 +9,9 @@ TagManager:
   - PlayerManager
   - StamBar
   - StamText
+  - SpawnPointType2
+  - SpawnPointType1
+  - ReverseFlashlight
   layers:
   - Default
   - TransparentFX

@@ -106,13 +106,13 @@ public class EnemyAttackSegC : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.CompareTag(player.tag))
+		if(other.CompareTag(player.tag) && !other.CompareTag("ReverseFlashlight"))
 			shouldAttack = true;
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if(other.CompareTag(player.tag))
+		if(other.CompareTag(player.tag) && !other.CompareTag("ReverseFlashlight"))
 			shouldAttack = false;
 	}
 

@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4363424628887820}
   - component: {fileID: 212634141346073980}
+  - component: {fileID: 114476150188961404}
   m_Layer: 0
   m_Name: OniShadowPresence
   m_TagString: Enemy
@@ -216,6 +217,18 @@ MonoBehaviour:
   defaultSprite: {fileID: 21300000, guid: db61501051c9aac41b0e0a48f9f01dca, type: 3}
   attackSprite: {fileID: 21300000, guid: 5471f2a7b9d445b4092334f9bac4c1b1, type: 3}
   attackRange: 2
+--- !u!114 &114476150188961404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593130935957744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080b6d34d580d7f4181364e38dddd287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulse_time: 2
 --- !u!114 &114804377566932078
 MonoBehaviour:
   m_ObjectHideFlags: 1
