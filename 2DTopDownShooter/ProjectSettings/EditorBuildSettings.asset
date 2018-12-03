@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scenes/RyanHScene.unity
     guid: 3be3b5f6fc891af4c8af625c8d7a6471
+  - enabled: 1
+    path: Assets/_scenes/Map1.2.unity
+    guid: fbcffb124318c684299eb1f23723e8f5
+  - enabled: 1
+    path: Assets/_scenes/TutorialSegC.unity
+    guid: 8118e3da850b9a0448955926131f5c5b
   m_configObjects: {}
