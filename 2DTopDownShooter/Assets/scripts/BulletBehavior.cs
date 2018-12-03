@@ -9,6 +9,7 @@ public class BulletBehavior : MonoBehaviour {
 	public float speed;
 	public float maxDistance;
 	private float distTravelled;
+	public float damage = 1f;
 
 
 	// Use this for initialization
@@ -41,7 +42,7 @@ public class BulletBehavior : MonoBehaviour {
 		if(health) //Damage anything with health that this touches, except PlayerBall as stated in the start
 		{
 			sr.sprite = impactSprite;  
-			collision.gameObject.GetComponent<HealthSegC>().TakeDamage(1f);
+			collision.gameObject.GetComponent<HealthSegC>().TakeDamage(damage);
 			Destroy(gameObject, 0.5f);
 		}
 		else
