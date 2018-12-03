@@ -12,6 +12,8 @@ TagManager:
   - SpawnPointType2
   - SpawnPointType1
   - ReverseFlashlight
+  - VictoryContainer
+  - TutorialText
   layers:
   - Default
   - TransparentFX
