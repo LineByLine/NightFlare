@@ -18,8 +18,9 @@ public class Credits : MonoBehaviour {
     }
     public void goToCredits()
     {
-        //source.PlayOneShot(buttonSound);
+        
         MainMenuContainer.SetActive(false);
         CreditsContainer.SetActive(true);
+        source.PlayOneShot(buttonSound);
     }
 }

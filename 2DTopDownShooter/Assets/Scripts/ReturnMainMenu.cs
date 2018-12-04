@@ -16,7 +16,7 @@ public class ReturnMainMenu : MonoBehaviour {
     }
     public void returnToMenu()
     {
-        //source.PlayOneShot(buttonSound);
+        source.PlayOneShot(buttonSound);
         MainMenuContainer.SetActive(true);
         CreditsContainer.SetActive(false);
 
