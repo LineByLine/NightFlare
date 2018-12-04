@@ -33,6 +33,7 @@ public class Waves : MonoBehaviour {
     //private IEnumerator startwave;
     private float playerHP;
     private bool EnemiesPresent;
+    public GameObject VictoryContainer;
     // Use this for initialization
     void Start()
     {
@@ -56,7 +57,12 @@ public class Waves : MonoBehaviour {
     {
         if (Wave > 3)
         {
-            Debug.Log("YOU WIN");
+            VictoryContainer.SetActive(true);
+            GameObject player = GameObject.FindGameObjectWithTag("PlayerBall");
+            foreach (MonoBehaviour m in player.GetComponents<MonoBehaviour>())
+            {
+                m.enabled = false;
+            }
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         for (int i = 0; i < numberOfEnemies; i++)
@@ -72,7 +78,6 @@ public class Waves : MonoBehaviour {
             }
         }
         bool nextwave = !EnemiesPresent && !FirstSpawn.EnemiesPresent && !SecondSpawn.EnemiesPresent && !ThirdSpawn.EnemiesPresent;
-        Debug.Log("Wave: " + Wave + " Spawn?: " + nextwave);
         if (nextwave)
         {
             Wave++;
@@ -97,7 +102,6 @@ public class Waves : MonoBehaviour {
                 NumEnemies[i] = Instantiate(enemyType, SpawnPoint.position, SpawnPoint.rotation);
                 yield return new WaitForSeconds(1);
             }
-            Debug.Log("Spawning 1");
             StopCoroutine(spawn1);
         }
     }
@@ -110,7 +114,6 @@ public class Waves : MonoBehaviour {
             enemyDamage.damage = 2 * enemyDamageOrigin;
             yield return new WaitForSeconds(1);
         }
-        Debug.Log("Spawning 2");
         StopCoroutine(spawn2);
     }
     private IEnumerator WaveOneDisplay()
