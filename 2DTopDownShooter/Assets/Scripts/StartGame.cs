@@ -20,6 +20,6 @@ public class StartGame : MonoBehaviour {
     {
         Debug.Log("Start Game");
         source.PlayOneShot(buttonSound);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("TutorialSegC");
     }
 }

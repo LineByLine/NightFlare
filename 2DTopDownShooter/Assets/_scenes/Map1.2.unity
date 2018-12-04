@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 114699478}
   - component: {fileID: 114699477}
   m_Layer: 5
-  m_Name: GAMEOVER!
+  m_Name: Victory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1304,6 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ab4a1cafc3991479d641e9657e915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 0}
 --- !u!114 &1570372912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1554,6 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92bd664774163245843a3471dc76cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Wave: 0
   WaveOneEnemies: 5
   WaveTwoEnemies: 10
   numberOfEnemies: 10
@@ -1569,6 +1571,8 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1791965929}
   NumEnemies: []
   OtherEnemies: []
+  WaveOneCanvas: {fileID: 0}
+  WaveTwoCanvas: {fileID: 0}
   VictoryContainer: {fileID: 258941061}
 --- !u!212 &1791965928
 SpriteRenderer:
