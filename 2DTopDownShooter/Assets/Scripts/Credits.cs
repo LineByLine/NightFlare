@@ -1,26 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Quit : MonoBehaviour {
+public class Credits : MonoBehaviour {
 
+    public GameObject MainMenuContainer;
+    public GameObject CreditsContainer;
     public AudioClip buttonSound;
     private AudioSource source;
 
     void Start()
     {
         source = GetComponent<AudioSource>();
+
+
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
-    public void endTheGame()
+    public void goToCredits()
     {
+        
+        MainMenuContainer.SetActive(false);
+        CreditsContainer.SetActive(true);
         source.PlayOneShot(buttonSound);
-        Debug.Log("Quit game button works");
-        Application.Quit();
     }
 }
