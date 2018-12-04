@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Waves : MonoBehaviour {
-    private int Wave = 0;
+    public int Wave = 0;
     public int WaveOneEnemies;
     public int WaveTwoEnemies;
     public int numberOfEnemies;
@@ -20,6 +20,8 @@ public class Waves : MonoBehaviour {
     public Transform SpawnPoint;
     public GameObject[] NumEnemies;
     public GameObject[] OtherEnemies;
+    public GameObject WaveOneCanvas;
+    public GameObject WaveTwoCanvas;
     private Waves FirstSpawn;
     private Waves SecondSpawn;
     private Waves ThirdSpawn;
@@ -28,6 +30,7 @@ public class Waves : MonoBehaviour {
     private enemyBehavior enemyHealth;
     private IEnumerator spawn1;
     private IEnumerator spawn2;
+    //private IEnumerator startwave;
     private float playerHP;
     private bool EnemiesPresent;
     // Use this for initialization
@@ -51,10 +54,10 @@ public class Waves : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Wave > 2)
+        if (Wave > 3)
         {
             Debug.Log("YOU WIN");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         for (int i = 0; i < numberOfEnemies; i++)
         {
@@ -68,9 +71,6 @@ public class Waves : MonoBehaviour {
                 EnemiesPresent = false;
             }
         }
-        bool firstspawnen = !FirstSpawn.EnemiesPresent;
-        bool secondspawnen = !SecondSpawn.EnemiesPresent;
-        bool thirdspawnen = !ThirdSpawn.EnemiesPresent;
         bool nextwave = !EnemiesPresent && !FirstSpawn.EnemiesPresent && !SecondSpawn.EnemiesPresent && !ThirdSpawn.EnemiesPresent;
         Debug.Log("Wave: " + Wave + " Spawn?: " + nextwave);
         if (nextwave)
@@ -79,9 +79,11 @@ public class Waves : MonoBehaviour {
             if (Wave == 1)
             {
                 StartCoroutine(spawn1);
+                StartCoroutine(WaveOneDisplay());
             }
             if (Wave == 2)
             {
+                StartCoroutine(WaveTwoDisplay());
                 StartCoroutine(spawn2);
             }
         }
@@ -110,5 +112,26 @@ public class Waves : MonoBehaviour {
         }
         Debug.Log("Spawning 2");
         StopCoroutine(spawn2);
+    }
+    private IEnumerator WaveOneDisplay()
+    {
+        WaveOneCanvas.SetActive(true);
+        yield return new WaitForSeconds(1);
+        StartCoroutine(DeactivateWaveOneDisplay());
+    }
+    private IEnumerator WaveTwoDisplay()
+    {
+        WaveTwoCanvas.SetActive(true);
+        yield return new WaitForSeconds(1);
+        StartCoroutine(DeactivateWaveTwoDisplay());
+    }
+    private IEnumerator DeactivateWaveTwoDisplay(){
+        yield return new WaitForSeconds(2);
+        WaveTwoCanvas.SetActive(false);
+    }
+    private IEnumerator DeactivateWaveOneDisplay()
+    {
+        yield return new WaitForSeconds(2);
+        WaveOneCanvas.SetActive(false);
     }
 }
