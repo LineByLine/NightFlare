@@ -14,13 +14,6 @@ public class PlayerHealth : MonoBehaviour {
 
     float timestamp = 0.0f; //start for a timer for how long it has been since Player has been damaged
 
-    playerMovement playerMovement; //reference to moving script
-    playerRotation playerRotation; //reference to player rotation script
-    AdrenalineSegCMovement AdrenalineSegCMovement;
-    playerShootingProjectile playerShootingProjectile;
-    playerMovementSegC playerMovementSegC;
-
-
     public AudioClip takingDamageSound; //Damage sound effect
     private AudioSource source;
 
@@ -36,14 +29,6 @@ public class PlayerHealth : MonoBehaviour {
         healthText.text = (hp / maxHp * 100).ToString() + "%";
         healthBar.fillAmount = hp / maxHp;
         StartCoroutine(addHealth()); //health regeneration
-        playerMovement = GetComponent<playerMovement>();
-        playerRotation = GetComponentInChildren <playerRotation>(); 
-        AdrenalineSegCMovement = GetComponent<AdrenalineSegCMovement>();
-        playerShootingProjectile = GetComponent<playerShootingProjectile>();
-        playerMovementSegC = GetComponent<playerMovementSegC>();
-
-
-
     }
 
     // Update is called once per frame
@@ -63,32 +48,14 @@ public class PlayerHealth : MonoBehaviour {
 
         source.PlayOneShot(takingDamageSound);//Shooting sound effect
     }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        //Debug.Log("AAAAA");
-        if (other.gameObject.CompareTag("Enemy") && hp>0)
-        {
-            Debug.Log("I've been hurt");
-            TakeDamage(5);
-
-            if (hp <= 0) //What happens if Player dies
-            {
-                Death();
-            }
-        }
-
-    }
-
     public void Death()
     {
-        //Debug.Log("DEATH");
         isDead = true;
-        //playerMovement.enabled = false;
-        playerRotation.enabled = false;
-        AdrenalineSegCMovement.enabled = false;
-        playerShootingProjectile.enabled = false;
-        playerMovementSegC.enabled = false;
+        GameObject player = GameObject.FindGameObjectWithTag("PlayerBall");
+        foreach (MonoBehaviour m in player.GetComponents<MonoBehaviour>())
+        {
+            m.enabled = false;
+        }
 
         //INSERT ATTACK/SHOOTING TO BE DISABLED
         source.volume = 0;
