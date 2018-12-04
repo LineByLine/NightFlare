@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class RestartRound : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public AudioClip buttonSound;
+    private AudioSource source;
+
+    // Use this for initialization
+    void Start () {
+        source = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,6 +21,7 @@ public class RestartRound : MonoBehaviour {
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //source.PlayOneShot(buttonSound);
     }
 
 }
